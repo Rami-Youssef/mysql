@@ -16,6 +16,7 @@ begin
 declare v_num int;
 declare v_nom char(15);
 declare v_prenom char(15);
+test;
 declare v_sexe char;
 declare fin boolean default 0;
 declare c_etudiants cursor for
