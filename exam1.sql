@@ -73,6 +73,7 @@ INSERT into Charge (libelle, montant, date_charge, id_deplacement)
 VALUES(p_libelle, p_montant, p_date_charge, p_id_deplacement);
 if date_charge BETWEEN(p_date_debut,p_date_debut) and somme>1000
 
-
+CREATE view vue_tout
+as SELECT 
 
 
