@@ -62,15 +62,16 @@ DECLARE p_date_debut date;
 DECLARE p_date_fin date;
 DECLARE p_Salarie int;
 declare somme DECIMAL(10,2);
-set somme= SELECT SUM(montant) from Charge as Ch join Deplacement as D on Ch.id_deplacement= D.id_deplacement;
+
 set p_Salarie= SELECT matricule from Deplacement where id_deplacement= p_id_deplacement;
+set somme= SELECT SUM(montant) from Charge as Ch join Deplacement as D on Ch.id_deplacement= D.id_deplacement where date_charge=p_date_charge and D.matricule=p_Salarie;
 set p_date_debut= SELECT date_debut from Deplacement where id_deplacement = p_id_deplacement;
-set p_date_debut= SELECT date_fin from Deplacement where id_deplacement = p_id_deplacement;
+set p_date_fin= SELECT date_fin from Deplacement where id_deplacement = p_id_deplacement;
 set autocommit=0;
 start TRANSACTION;
 INSERT into Charge (libelle, montant, date_charge, id_deplacement)
 VALUES(p_libelle, p_montant, p_date_charge, p_id_deplacement);
-if date_charge BETWEEN(p_date_debut,p_date_debut)
+if date_charge BETWEEN(p_date_debut,p_date_debut) and somme>1000
 
 
 
