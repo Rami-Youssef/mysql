@@ -69,4 +69,10 @@ BEGIN
 declare v_echelle int;
 SELECT s.echelle into v_echelle from Salarie as s join Deplacement as D on s.matricule=D.matricule where id_deplacement=p_id_deplacement;
 
+declare v_montant DECIMAL(10,2);
+SELECT SUM(ch.montant) into v_montant from Charge where id_deplacement=p_id_deplacement and date_charge=p_date_charge;
+#as ch join Deplacement as D on D.id_deplacement=ch.id_deplacement 
+DECLARE v_date_debut date;
+SELECT date_debut
+
 
