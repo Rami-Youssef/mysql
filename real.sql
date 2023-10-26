@@ -44,7 +44,7 @@ select * from affiche_Salarie;
 
 #4
 delimiter $
-create procedure ajouter_Deplacement(
+create procedure p_ajouter_Deplacement(
     p_date_debut date, 
     p_date_fin date,
     p_kilometrage int, 
@@ -63,16 +63,47 @@ call ajouter_Deplacement("20030101","20040101",20,2)
 
 #5
 delimiter $
-create procedure  ajouter_charge(p_libelle int, montant decimal(10,2), p_date_charge date, p_id_deplacement int)
+create procedure  ajouter_charge(
+    p_libelle int, 
+    montant decimal(10,2), 
+    p_date_charge date, 
+    p_id_deplacement int
+)
 BEGIN
 
 declare v_echelle int;
-SELECT s.echelle into v_echelle from Salarie as s join Deplacement as D on s.matricule=D.matricule where id_deplacement=p_id_deplacement;
-
 declare v_montant DECIMAL(10,2);
-SELECT SUM(ch.montant) into v_montant from Charge where id_deplacement=p_id_deplacement and date_charge=p_date_charge;
-#as ch join Deplacement as D on D.id_deplacement=ch.id_deplacement 
 DECLARE v_date_debut date;
-SELECT date_debut
+DECLARE v_date_fin date;
 
+SELECT s.echelle into v_echelle from Salarie as s join Deplacement as D on s.matricule=D.matricule where id_deplacement=p_id_deplacement;
+SELECT SUM(ch.montant) into v_montant from Charge where id_deplacement=p_id_deplacement and date_charge=p_date_charge;
+SELECT date_debut into v_date_debut from Deplacement where id_deplacement=p_id_deplacement;
+SELECT date_fin into v_date_fin from Deplacement where id_deplacement=p_id_deplacement;
+
+if v_echelle<9 THEN
+    if p_date_charge BETWEEN v_date_debut and date_fin THEN
+        if v_montant<= 1000 THEN
+            INSERT into Charge(libelle, montant, date_charge, id_deplacement)
+            values(p_libelle, p_montant, p_date_charge, p_id_deplacement);
+        else 
+            SELECT "money prob 9" as "erreur message";
+        end IF;
+    ELSE
+        SELECT "date prob 9" as "erreur message";
+    end IF;
+ELSE
+   if p_date_charge BETWEEN v_date_debut and date_fin THEN
+        if v_montant<= 1500 THEN
+            INSERT into Charge(libelle, montant, date_charge, id_deplacement)
+            values(p_libelle, p_montant, p_date_charge, p_id_deplacement);
+        else SELECT "money prob 10" as "erreur message";
+        end IF;
+    ELSE
+        SELECT "date prob 10" as "erreur message";
+    end IF;
+end IF;
+end$
+delimiter ;
+call ajouter_charge()
 
