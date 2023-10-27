@@ -62,6 +62,7 @@ end$
 call ajouter_Deplacement("20030101","20040101",20,2)
 
 #5
+drop procedure ajouter_charge;
 delimiter $
 create procedure  ajouter_charge(
     p_libelle int, 
@@ -72,17 +73,16 @@ create procedure  ajouter_charge(
 BEGIN
 
 declare v_echelle int;
-declare v_montant DECIMAL(10,2);
+declare v_montant DECIMAL(10,2) DEFAULT 0;
 DECLARE v_date_debut date;
 DECLARE v_date_fin date;
 
 SELECT s.echelle into v_echelle from Salarie as s join Deplacement as D on s.matricule=D.matricule where id_deplacement=p_id_deplacement;
-SELECT SUM(ch.montant) into v_montant from Charge where id_deplacement=p_id_deplacement and date_charge=p_date_charge;
+SELECT SUM(montant) into v_montant from Charge where id_deplacement=p_id_deplacement and date_charge=p_date_charge;
 SELECT date_debut into v_date_debut from Deplacement where id_deplacement=p_id_deplacement;
 SELECT date_fin into v_date_fin from Deplacement where id_deplacement=p_id_deplacement;
-
 if v_echelle<9 THEN
-    if p_date_charge BETWEEN v_date_debut and date_fin THEN
+    if p_date_charge BETWEEN v_date_debut and v_date_fin THEN
         if v_montant<= 1000 THEN
             INSERT into Charge(libelle, montant, date_charge, id_deplacement)
             values(p_libelle, p_montant, p_date_charge, p_id_deplacement);
@@ -93,17 +93,20 @@ if v_echelle<9 THEN
         SELECT "date prob 9" as "erreur message";
     end IF;
 ELSE
-   if p_date_charge BETWEEN v_date_debut and date_fin THEN
-        if v_montant<= 1500 THEN
+   if p_date_charge BETWEEN v_date_debut and v_date_fin THEN
+        if v_montant< 1500 THEN
             INSERT into Charge(libelle, montant, date_charge, id_deplacement)
             values(p_libelle, p_montant, p_date_charge, p_id_deplacement);
-        else SELECT "money prob 10" as "erreur message";
+        else SELECT v_montant as "erreur message";
         end IF;
-    ELSE
+    ELSE 
         SELECT "date prob 10" as "erreur message";
     end IF;
 end IF;
 end$
 delimiter ;
-call ajouter_charge()
+call ajouter_charge("bruh",900,"20030101",1);
+INSERT into Charge(libelle, montant, date_charge, id_deplacement)
+            values("p_libelle", 50, 20030202, 1);
+SELECT * from Deplacement;
 
