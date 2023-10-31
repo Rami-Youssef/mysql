@@ -1,7 +1,7 @@
 #ex1
 create database lts;
 use lts;
-create table Salarie (
+create table c (
     matricule int PRIMARY key AUTO_INCREMENT, 
     nom char(25), 
     prenom char(25), 
