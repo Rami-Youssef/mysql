@@ -12,3 +12,5 @@ db.etudiants.insertOne(
     }
 )
 db.etudiants.find()
+db.etudiants.drop()
+db.dropDatabase()
