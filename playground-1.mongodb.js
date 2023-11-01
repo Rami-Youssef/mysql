@@ -61,3 +61,36 @@ db.articles.insertMany(
         }
     ]
 )
+db.articles.find().limit(1)
+db.articles.insertOne(
+    {
+        _id:6,
+        Désignation:"bruh",
+            Quantité:3,
+            Prix:5.50,
+            TVA:0.50,
+            Catégorie:"gaming"
+    }
+)
+db.articles.remove({_id:6})
+db.articles.find()
+db.articles.updateOne({Désignation:"Souris Lenovo"},{$set:{TVA:25}})
+db.articles.updateMany({},{$inc:{Quantité:20}})
+db.articles.updateMany({Catégorie:"Bureautique"},{$inc:{Quantité:20}})
+db.articles.find({TVA:25})
+db.articles.find({},{Désignation:1,Quantité:1})
+db.articles.find({Catégorie:"Informatique"},{Désignation:1,Prix:1,Catégorie:1})
+db.articles.find({Quantité:{$gt:20}})
+db.articles.find({Quantité:{lt:30}})
+db.articles.find({Quantité:{lte:30}})
+db.articles.find({Quantité:{$in:[30,45]}})
+db.articles.find({$and[{Quantité:{$ls:30}},{TVA:{$eq:25}}]})
+
+
+
+
+
+
+
+
+
