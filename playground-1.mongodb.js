@@ -84,7 +84,12 @@ db.articles.find({Quantité:{$gt:20}})
 db.articles.find({Quantité:{lt:30}})
 db.articles.find({Quantité:{lte:30}})
 db.articles.find({Quantité:{$in:[30,45]}})
-db.articles.find({$and[{Quantité:{$ls:30}},{TVA:{$eq:25}}]})
+db.articles.find({$and:[{Quantité:{$lt:50}},{TVA:{$eq:25}}]})
+db.articles.aggregate(
+    [
+        {$group:{_id:"$Catégorie",total:{$sum:1}}}
+    ]
+)
 
 
 
