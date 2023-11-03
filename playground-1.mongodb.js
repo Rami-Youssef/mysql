@@ -1,5 +1,6 @@
+/*ex 1*/
 
-/*use ("ecole");
+use ("ecole");
 const collection="etudiants";
 db.createCollection("etudiants");
 show dbs;
@@ -15,7 +16,7 @@ db.etudiants.find()
 db.etudiants.drop()
 db.dropDatabase()*/
 
-
+/*ex2 */
 use article;
 db.createCollection("articles");
 db.articles.insertMany(
