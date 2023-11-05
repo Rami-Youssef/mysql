@@ -1,4 +1,4 @@
-/*ex 1*/
+
 
 use ("ecole");
 const collection="etudiants";
@@ -91,7 +91,7 @@ db.articles.aggregate(
         {$group:{_id:"$Catégorie",total:{$sum:1}}}
     ]
 );
-/*fin*/
+
 
 
 
