@@ -75,3 +75,16 @@ update Livre as a join Emprunt as e on a.id_livre=e.id_livre
 set disponible=1 WHERE id_emprunt=p_Emprunt;
 END
 DELIMITER ;
+SELECT* from Emprunt;
+call p_rendu(1);
+---------------------------------------------------------------------
+delimiter $
+create procedure find()
+BEGIN
+SELECT a.* from Emprunt as e left join Adhrent as a
+on a.numero=e.numero_adherent where date_rendu is NULL;
+END
+DELIMITER;
+drop PROCEDURE find;
+call find();
+---------------------------------------------------------------------
