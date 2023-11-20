@@ -23,15 +23,55 @@ create table Emprunt(
     Foreign Key (id_livre) REFERENCES Livre(id_livre)
     );
 /*insert into Adherent values(1,"rami","youssef","rami@h",20211010),;*/
+---------------------------------------------------------------------
 DELIMITER $
-CREATE procedure p_Adhrent(
-    p_nom char(25),
-    p_prenom chAR(25),
-    p_email char(25)
+CREATE PROCEDURE p_Adhrent(
+    p_nom CHAR(25),
+    p_prenom CHAR(25),
+    p_email CHAR(25)
 )
 BEGIN
-insert into adhrent(nom,prenom,email,date_inscription)
-values(p_nom ,p_prenom, p_email, now());
+    INSERT INTO Adhrent (nom, prenom, email, date_inscription)
+    VALUES (p_nom, p_prenom, p_email, NOW());
+END
+DELIMITER ;
+drop procedure p_Adhrent;
+call p_Adhrent("rami","youssef","rami@gmail.com")
 
-end $
+---------------------------------------------------------------------
+delimiter $
+create procedure P_Livre(
+    p_titre char(25), 
+    p_auteur char(25)
+)
+BEGIN
+insert into Livre(titre, auteur, disponible)
+values(p_titre,p_auteur,1);
+END
 delimiter;
+
+call P_Livre("jojo","youssef");
+---------------------------------------------------------------------
+DELIMITER $
+create procedure P_Emprunt(
+    p_numero int,
+    P_id_livre int
+)
+BEGIN
+insert into Emprunt(numero_adherent,id_livre, date_emprunt, date_rendu)
+values(p_numero,P_id_livre,now(),null);
+update Livre set disponible = 0 where id_livre=P_id_livre;
+END;
+DELIMITER;
+call P_Emprunt(1,1);
+---------------------------------------------------------------------
+DELIMITER $
+create procedure p_rendu(
+    p_Emprunt int
+)
+BEGIN
+update Emprunt set date_rendu = now() where id_emprunt=p_Emprunt;
+update Livre as a join Emprunt as e on a.id_livre=e.id_livre
+set disponible=1 WHERE id_emprunt=p_Emprunt;
+END
+DELIMITER ;
