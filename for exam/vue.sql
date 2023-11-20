@@ -21,3 +21,12 @@ Alter table Categorie modify libelle char(25);
 
 -----------------------------------------------------------
 
+create view viewarticle
+AS
+SELECT reference,designation,prix from Article;
+SELECT * from viewarticle;
+
+------------------------------------------------------------
+CREATE view vue2
+AS
+SELECT designation,libelle from Article as
