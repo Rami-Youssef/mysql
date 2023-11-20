@@ -109,3 +109,4 @@ call ajouter_charge("bruh",900,"20030101",1);
 INSERT into Charge(libelle, montant, date_charge, id_deplacement)
             values("p_libelle", 50, 20030202, 1);
 SELECT * from Deplacement;
+.
