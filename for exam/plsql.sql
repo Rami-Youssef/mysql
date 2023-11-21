@@ -76,4 +76,8 @@ db.etudiant.find().limit(1)
 db.etudiant.deleteone({tva:20})
 db.etudient.updateone({Désignation:" souris USB LG"},
 {$set:{TVA:25}})
-db.
+db.etudiant.updatemany({},{$inc:{10}})
+db.etudiant.updatemany({catégorie:"bureautique"},{$inc:{10}})
+db.etudiant.find({TVA:25})
+db.etudiant.find({catégorie:"informatique"},
+{})
