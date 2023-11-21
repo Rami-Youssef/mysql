@@ -59,4 +59,15 @@ after MODIFY
 on article
 
 ---------------------------------------------------------------------------
-
+sum age dyal osma
+db.etudiant.aggregate([
+    {
+        $group:{_id:"filier",somme:{$sum:"age"}}
+    }
+    {
+        $match:{name:"osama sama"}
+    }
+    {
+        $project:{_id:0,name:1}
+    }
+])
