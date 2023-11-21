@@ -71,3 +71,9 @@ db.etudiant.aggregate([
         $project:{_id:0,name:1}
     }
 ])
+------------------------------------------------------------------
+db.etudiant.find().limit(1)
+db.etudiant.deleteone({tva:20})
+db.etudient.updateone({Désignation:" souris USB LG"},
+{$set:{TVA:25}})
+db.
