@@ -79,5 +79,13 @@ db.etudient.updateone({Désignation:" souris USB LG"},
 db.etudiant.updatemany({},{$inc:{10}})
 db.etudiant.updatemany({catégorie:"bureautique"},{$inc:{10}})
 db.etudiant.find({TVA:25})
-db.etudiant.find({catégorie:"informatique"},
-{})
+db.etudiant.find({quantité:{$lt:30},tva:{$eq:25}})
+db.etudiant.aggregate([
+    {
+        $group:{_id:"$categorie"}
+    },
+    {
+        $match:{$l}
+    }
+
+])
