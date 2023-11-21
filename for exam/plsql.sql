@@ -42,6 +42,21 @@ create Procedure v_Deplacement(
     p_date_debut date, p_date_fin date, p_kilometrage INT, p_matricule INT
 )
 BEGIN
+---------------------------------------------------------------------------------------
+delimiter$
+create trigger addsomethig
+after INSERT
+on article for each ROW
+begin
+insert into prix(reference, ancien_prix, nouveau_prix, date_maj)
+values(old.reference,null,old.prix_achat,now())$
+END$
+delimiter;
 
+delimiter$
+create trigger modifysomething
+after MODIFY
+on article
 
+---------------------------------------------------------------------------
 
