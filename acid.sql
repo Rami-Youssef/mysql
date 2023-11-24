@@ -24,7 +24,7 @@ code_livre INT,
 numero_adherent INT, 
 date_emprunt date, 
 date_rendu date
-    )
+    );
 
 
 
