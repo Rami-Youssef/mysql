@@ -15,4 +15,3 @@ END $
 DELIMITER ;
 call ajouter('Bouga','Nabil');
 SELECT * from clieNt
-l
