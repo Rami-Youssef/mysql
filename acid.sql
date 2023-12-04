@@ -7,7 +7,7 @@ create TABLE Livre (code int primary key AUTO_INCREMENT,
     disponible BOOLEAN
     )
 
-------------------
+-----
 create table Adherent (
     numero INT primary key, 
     nom char(25), 
