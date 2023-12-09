@@ -1,5 +1,5 @@
 create DATABASE emprunt_livre;
-:
+::::::
 use emprunt_livre;
 create TABLE Livre (code int primary key AUTO_INCREMENT, 
     titre char(25), 
