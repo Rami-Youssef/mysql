@@ -1,15 +1,13 @@
 create DATABASE emprunt_livre;
 
 use emprunt_livre;
-
-
 create TABLE Livre (code int primary key AUTO_INCREMENT, 
     titre char(25), 
     langue char(25), 
     disponible BOOLEAN
     )
 
-
+!
 create table Adherent (
     numero INT primary key, 
     nom char(25), 
@@ -24,7 +22,7 @@ code_livre INT,
 numero_adherent INT, 
 date_emprunt date, 
 date_rendu date
-    )
+    );
 
 
 
