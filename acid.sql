@@ -55,7 +55,6 @@ END $
 delimiter ;
 
 
-
 delimiter $
 create Function fs_nbr_livre(p_adh INt)
 RETURNS int
