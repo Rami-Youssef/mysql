@@ -22,7 +22,6 @@ date_emprunt date,
 date_rendu date
     );
 
-
 delimiter $
 create Procedure ajout(v_nom char(25),v_prenom char(25),v_email char(25),v_password char(25))
 BEGIN
