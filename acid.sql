@@ -6,6 +6,8 @@ create TABLE Livre (code int primary key AUTO_INCREMENT,
     langue char(25), 
     disponible BOOLEAN
     )
+
+    
 !
 create table Adherent (
     numero INT primary key, 
@@ -14,6 +16,8 @@ create table Adherent (
     email char(25), 
     password char(25)
     )
+
+    
 
 create table Emprunt (numero int primary key, 
 code_livre INT, 
