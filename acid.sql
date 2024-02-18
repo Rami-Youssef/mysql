@@ -67,7 +67,6 @@ delimiter ;
 
 
 
-
 DELIMITER $
 create procedure trans(p_code_livre int,p_numero_adherent int,p_date_emprunt date,p_date_rendu date)
 BEGIN
