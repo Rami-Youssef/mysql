@@ -16,7 +16,6 @@ create table Adherent (
     password char(25)
     )
 
-
 create table Emprunt (numero int primary key, 
 code_livre INT, 
 numero_adherent INT, 
