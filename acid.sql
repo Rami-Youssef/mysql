@@ -47,7 +47,6 @@ delimiter ;
 
 
 
-
 delimiter $
 create Procedure ajout2(titre char(25), langue char(25), disponible char(25))
 BEGIN
