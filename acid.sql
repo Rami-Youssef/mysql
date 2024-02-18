@@ -6,7 +6,6 @@ create TABLE Livre (code int primary key AUTO_INCREMENT,
     langue char(25), 
     disponible BOOLEAN
     )
-
 !
 create table Adherent (
     numero INT primary key, 
