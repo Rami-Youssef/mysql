@@ -1,4 +1,4 @@
-create event annualTask on schedule
+ create event annualTask on schedule
 at current_timestamp( )+ interval '12' hour
 Do 
 BEGIN
